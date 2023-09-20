@@ -1,7 +1,6 @@
 # moon-warehouse
 Warehouse System for QBCore
 
-
 1) 16 PreBuilt Warehouses
 
 2) Players Can Own One Warehouse for 7 Days After that they have to renew it
@@ -17,7 +16,6 @@ Warehouse System for QBCore
 7) To remove a warehouse just remove the coords from the config
 
 8) Ware house has shared stashes that means if some player forgets to renew the ware house and it gets deleted and some other player buys that ware house, all the items of the
-
 previous owner can be access and removed and used by the new owner
 
 9) Admins can pull stash of a warehouse by doing /pullwarehousestash [warehouseid]
