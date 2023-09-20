@@ -23,4 +23,9 @@ shared_scripts {
     '@ox_lib/init.lua',
 }
 
+escrow_ignore {
+    'client/*.lua',
+    'server/*.lua',
+}
+
 lua54 'yes'

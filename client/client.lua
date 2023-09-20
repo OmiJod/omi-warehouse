@@ -8,7 +8,9 @@ end
 RegisterNetEvent("moon-warehouse:client:openmenu", function(meow)
     DisablePurchase = false
     DisableOwnerMenu = true
-    DontOpenMenu = false
+    DisablePoliceRaid = true
+    local Player = QBCore.Functions.GetPlayerData()
+    if Player.job.type == "leo" then DisablePoliceRaid = false end
     QBCore.Functions.TriggerCallback('moon-warehouse:server:warehousepurchased', function(result)
         if not result then
             DisablePurchase = false
@@ -133,6 +135,25 @@ RegisterNetEvent("moon-warehouse:client:openmenu", function(meow)
                 arrow = false, -- puts arrow to the right
                 onSelect = function()
                     TriggerEvent("moon-warehouse:client:openbuyingcontext", meow)
+                end,
+            },
+            {
+                icon = "dollar-sign",
+                title = 'Raid Warehouse',
+                disabled = DisablePoliceRaid,
+                arrow = false, -- puts arrow to the right
+                onSelect = function()
+                    local HasItem = exports['qb-inventory']:HasItem("police_stormram")
+                    if not HasItem then QBCore.Functions.Notify("You Dont have ".. QBCore.Shared.Items["police_stormram"].label .." To raid this warehouse", "primary", 2500) return end
+                    TriggerEvent('animations:client:EmoteCommandStart', {"knock2"})
+                    local success = lib.skillCheck({'easy', 'easy', {areaSize = 60, speedMultiplier = 2}, 'hard'}, {'w', 'a', 's', 'd'})
+                    if success then
+                        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                        TriggerEvent("moon-warehouse:client:openwarehousestash", meow)
+                    else
+                        TriggerEvent('animations:client:EmoteCommandStart', {"c"})
+                        QBCore.Functions.Notify("You Failed to Raid", "primary", 2500)
+                    end
                 end,
             },
             {
