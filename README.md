@@ -1,47 +1,34 @@
 # moon-warehouse
 
 Preview - https://youtu.be/BR7JHsy82FY
-Script Support - https://discord.gg/n9eSC4Zb
 
-Tebex https://moon-scriptsstore.tebex.io/
-Warehouse System for QBCore
+# Moon Warehouse is a feature-rich warehouse system designed for QBCore, a popular framework for FiveM servers. This script enhances the gameplay experience by introducing the concept of warehouses, where players can store their items and manage their inventory efficiently.
 
-1) 16 PreBuilt Warehouses
+Features
+16 PreBuilt Warehouses: Moon Warehouse comes with 16 pre-built warehouse locations, making it easy for players to choose a storage facility that suits their needs.
 
-2) Players Can Own One Warehouse for 7 Days After that they have to renew it
+Lease System: Players can own a warehouse for a period of 7 days. After this period, they must renew their lease to continue using the warehouse.
 
-3) If players Fail to renew the lease the Script Will Automatically Delete it
+Automatic Lease Expiry: If players fail to renew their lease, the script will automatically delete the warehouse, ensuring the map isn't cluttered with abandoned warehouses.
 
-4) Players can Upgrade there warehouse stash up to 5000 Kgs
+Warehouse Upgrades: Players have the option to upgrade their warehouse stash capacity, allowing them to store up to 5000 kilograms of items. They can also expand their warehouse slots, providing space for up to 110 items.
 
-5) Players can Upgrade there warehouse slots up to 110
+Easy Warehouse Addition: Adding a new warehouse is hassle-free. Simply add coordinates in the configuration file, and the script will automatically execute the SQL necessary to create it.
 
-6) To Add a New Ware house all you have to do is add coords in the config the script will automaticall execute the sql
+Warehouse Removal: Removing a warehouse is just as straightforward. Delete the coordinates from the configuration, and the warehouse will be removed from the map.
 
-7) To remove a warehouse just remove the coords from the config
+Shared Stashes: Warehouses have shared stashes, meaning that if a player forgets to renew their lease and their warehouse is deleted, a new owner can access, remove, and use the items left behind by the previous owner.
 
-8) Ware house has shared stashes that means if some player forgets to renew the ware house and it gets deleted and some other player buys that ware house, all the items of the
-previous owner can be access and removed and used by the new owner
+Admin Management: Administrators have the power to manage warehouses by using the /pullwarehousestash [warehouseid] command to access the contents of a specific warehouse.
 
-9) Admins can pull stash of a warehouse by doing /pullwarehousestash [warehouseid]
+Customization: You can easily customize the default price, stash size, and stash slots through SQL to fit the needs of your server.
 
-10) Default price which is 10k can be changed thhrough SQL same with stashsize and stash slots
+# Dependencies
 
-Images 
+ox_lib: Moon Warehouse relies on the ox_lib library.
+# Installation
 
-1) Menu
-
-![image](https://github.com/OmiJod/moon-warehouse/assets/69292814/fa2b4fe1-60f9-490d-99f1-255409284cee)
-
-3) Warehouse Blips
-
-![image](https://github.com/OmiJod/moon-warehouse/assets/69292814/30bd48d7-4c27-4f38-9fd1-3658d7ff320f)
-
-Dependency - ox_lib
-
-Installation 
-1) Execute the below table and you are done
-
+Execute the SQL query below to set up the necessary database table:
 ```sql
 CREATE TABLE `warehouses` (
 	`location` INT(11) NOT NULL,
@@ -54,5 +41,9 @@ CREATE TABLE `warehouses` (
 	PRIMARY KEY (`location`) USING BTREE
 )
 COLLATE='utf8mb3_general_ci'
-ENGINE=InnoDB
-;
+ENGINE=InnoDB;
+```
+That's it! Moon Warehouse is now ready to elevate the storage and inventory management experience for players on your FiveM server.
+
+Enjoy the script and provide feedback on the Script Support Discord if needed.
+Discord - https://discord.gg/n9eSC4Zb
