@@ -171,12 +171,28 @@ end)
 
 RegisterNetEvent("moon-warehouse:client:openwarehousestash", function(id)
     local warehouseid = id
-    QBCore.Functions.TriggerCallback('moon-warehouse:server:getdetails', function(result)
-        local stashname = "warehouse"..warehouseid.."_moon"
-        TriggerEvent("inventory:client:SetCurrentStash", stashname) 
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", stashname, 
-        { maxweight = result.stashsize, slots = result.slots }) 
-    end, warehouseid)
+    if Config.inventory == "qb" then
+        QBCore.Functions.TriggerCallback('moon-warehouse:server:getdetails', function(result)
+            local stashname = "warehouse"..warehouseid.."_moon"
+            TriggerEvent("inventory:client:SetCurrentStash", stashname) 
+            TriggerServerEvent("inventory:server:OpenInventory", "stash", stashname, 
+            { maxweight = result.stashsize, slots = result.slots }) 
+        end, warehouseid)
+    elseif Config.inventory == "ox" then
+        QBCore.Functions.TriggerCallback('moon-warehouse:server:getdetails', function(result)
+            local stashname = "warehouse"..warehouseid.."_moon"
+            -- TriggerEvent("inventory:client:SetCurrentStash", stashname) 
+            -- TriggerServerEvent("inventory:server:OpenInventory", "stash", stashname, 
+            -- { maxweight = result.stashsize, slots = result.slots }) 
+            TriggerServerEvent('moon:warehouse:server:oxinventorystash', warehouseid, stashname, result.stashsize, result.slots)
+        end, warehouseid)
+    end
+end)
+
+RegisterNetEvent('moon-warehouse:client:openstash', function(id)
+    exports["ox_inventory"]:openInventory("stash", {
+      id = id
+    })
 end)
 
 RegisterNetEvent("moon-warehouse:client:checkwarehouse", function(id)

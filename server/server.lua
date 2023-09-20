@@ -112,6 +112,15 @@ RegisterNetEvent('moon-warehouse:server:upgradewarehousesize', function(location
     end
 end)
 
+RegisterNetEvent('moon:warehouse:server:oxinventorystash', function(warehouseid, stashname, stashsize, slots)
+	local Player = QBCore.Functions.GetPlayer(source)
+	local id = warehouseid
+    local stashname = stashname
+    local slots = slots
+    exports["ox_inventory"]:RegisterStash(stashname, stashname, slots, stashsize)
+	TriggerClientEvent("moon-warehouse:client:openstash", source, id)
+end)
+
 RegisterNetEvent('moon-warehouse:server:sellwarehouse', function(location)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)

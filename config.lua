@@ -3,6 +3,7 @@ Config = {}
 Config.WareHouseSellPrice = 5000  --- for hw much a player can sell his ware house to Government
 Config.RefreshBlipInterval = 6 ---- In Hours
 Config.RentPeriod = 7 --- Days
+Config.inventory = "qb" --- qb/ox
 
 Config.WareHouses = {
     ['Warehouses'] = {
