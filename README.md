@@ -8,21 +8,21 @@ Preview - https://youtu.be/BR7JHsy82FY
 
 1) 16 PreBuilt Warehouses: Moon Warehouse comes with 16 pre-built warehouse locations, making it easy for players to choose a storage facility that suits their needs.
 
-Lease System: Players can own a warehouse for a period of 7 days. After this period, they must renew their lease to continue using the warehouse.
+2) Lease System: Players can own a warehouse for a period of 7 days. After this period, they must renew their lease to continue using the warehouse.
 
-Automatic Lease Expiry: If players fail to renew their lease, the script will automatically delete the warehouse, ensuring the map isn't cluttered with abandoned warehouses.
+3) Automatic Lease Expiry: If players fail to renew their lease, the script will automatically delete the warehouse, ensuring the map isn't cluttered with abandoned warehouses.
 
-Warehouse Upgrades: Players have the option to upgrade their warehouse stash capacity, allowing them to store up to 5000 kilograms of items. They can also expand their warehouse slots, providing space for up to 110 items.
+4) Warehouse Upgrades: Players have the option to upgrade their warehouse stash capacity, allowing them to store up to 5000 kilograms of items. They can also expand their warehouse slots, providing space for up to 110 items.
 
-Easy Warehouse Addition: Adding a new warehouse is hassle-free. Simply add coordinates in the configuration file, and the script will automatically execute the SQL necessary to create it.
+5) Easy Warehouse Addition: Adding a new warehouse is hassle-free. Simply add coordinates in the configuration file, and the script will automatically execute the SQL necessary to create it.
 
-Warehouse Removal: Removing a warehouse is just as straightforward. Delete the coordinates from the configuration, and the warehouse will be removed from the map.
+6) Warehouse Removal: Removing a warehouse is just as straightforward. Delete the coordinates from the configuration, and the warehouse will be removed from the map.
 
-Shared Stashes: Warehouses have shared stashes, meaning that if a player forgets to renew their lease and their warehouse is deleted, a new owner can access, remove, and use the items left behind by the previous owner.
+7) Shared Stashes: Warehouses have shared stashes, meaning that if a player forgets to renew their lease and their warehouse is deleted, a new owner can access, remove, and use the items left behind by the previous owner.
 
-Admin Management: Administrators have the power to manage warehouses by using the /pullwarehousestash [warehouseid] command to access the contents of a specific warehouse.
+8) Admin Management: Administrators have the power to manage warehouses by using the /pullwarehousestash [warehouseid] command to access the contents of a specific warehouse.
 
-Customization: You can easily customize the default price, stash size, and stash slots through SQL to fit the needs of your server.
+9) Customization: You can easily customize the default price, stash size, and stash slots through SQL to fit the needs of your server.
 
 # Dependencies
 
