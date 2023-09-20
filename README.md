@@ -1,4 +1,9 @@
 # moon-warehouse
+
+Preview - https://youtu.be/BR7JHsy82FY
+Script Support - https://discord.gg/n9eSC4Zb
+
+Tebex https://moon-scriptsstore.tebex.io/
 Warehouse System for QBCore
 
 1) 16 PreBuilt Warehouses
@@ -22,7 +27,15 @@ previous owner can be access and removed and used by the new owner
 
 10) Default price which is 10k can be changed thhrough SQL same with stashsize and stash slots
 
-dependancy is ox_lib
+Images 
+
+1) Menu
+![image](https://github.com/OmiJod/moon-warehouse/assets/69292814/fa2b4fe1-60f9-490d-99f1-255409284cee)
+
+2) Warehouse Blips
+![image](https://github.com/OmiJod/moon-warehouse/assets/69292814/30bd48d7-4c27-4f38-9fd1-3658d7ff320f)
+
+Dependency - ox_lib
 
 Installation 
 1) Execute the below table and you are done
