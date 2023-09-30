@@ -29,8 +29,17 @@ CREATE TABLE `warehouses` (
 	`slots` INT(11) NULL DEFAULT NULL,
 	`price` INT(11) NULL DEFAULT NULL,
 	`date_purchased` DATE NULL DEFAULT NULL,
+	`passwordset` INT(11) NULL DEFAULT '0',
+	`password` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci',
 	PRIMARY KEY (`location`) USING BTREE
 )
 COLLATE='utf8mb3_general_ci'
 ENGINE=InnoDB
 ;
+```
+
+If Upgrading to 1.2.0 then execute this
+```sql
+ALTER TABLE warehouses ADD COLUMN `passwordset` INT DEFAULT '0';
+ALTER TABLE warehouses ADD COLUMN `password` VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb3_general_ci';
+```

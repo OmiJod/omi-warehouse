@@ -4,7 +4,7 @@ function CleanupWarehouses()
     local currentDate = os.date('%Y-%m-%d') -- Get the current date in YYYY-MM-DD format
     local sevenDaysAgo = os.date('%Y-%m-%d', os.time() - Config.RentPeriod * 24 * 60 * 60) -- Calculate the date 7 days ago
     
-    MySQL.Async.execute('UPDATE warehouses SET owned = 0, owner = 0, date_purchased = NULL, stashsize = 3000000, slots = 50 WHERE `date_purchased` <= ?', {sevenDaysAgo})
+    MySQL.Async.execute('UPDATE warehouses SET owned = 0, owner = 0, date_purchased = NULL, stashsize = 3000000, slots = 50, passwordset = 0, password = NULL WHERE `date_purchased` <= ?', {sevenDaysAgo})
 end
 
 RegisterNetEvent('moon-warehouse:server:buyWareHouse', function(location, CitizenID, price)
@@ -86,6 +86,14 @@ RegisterNetEvent('moon-warehouse:server:Upgradewarehouseslots', function(locatio
     end
 end)
 
+RegisterNetEvent('moon-warehouse:server:updatepassword', function(location, CitizenID, password)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local password = password
+    MySQL.Async.execute('UPDATE warehouses SET passwordset = ?, password = ? WHERE `location` = ?', {1, password, location})
+    TriggerClientEvent('QBCore:Notify', src, "You have Updated the Password", 'success')
+end)
+
 RegisterNetEvent('moon-warehouse:server:upgradewarehousesize', function(location, CitizenID, size)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
@@ -131,6 +139,8 @@ RegisterNetEvent('moon-warehouse:server:sellwarehouse', function(location)
         MySQL.Async.execute('UPDATE warehouses  SET slots = ? WHERE `location` = ?', {50, location})
         MySQL.Async.execute('UPDATE warehouses  SET stashsize = ? WHERE `location` = ?', {3000000, location})
         MySQL.Async.execute('UPDATE warehouses  SET date_purchased = NULL WHERE `location` = ?', {location})
+        MySQL.Async.execute('UPDATE warehouses  SET passwordset = ? WHERE `location` = ?', {0, location})
+        MySQL.Async.execute('UPDATE warehouses  SET password = NULL WHERE `location` = ?', {location})
         TriggerClientEvent('QBCore:Notify', src, "Warehouse Sold", 'success')
     else
         TriggerClientEvent('QBCore:Notify', src, "Warehouse Cannot Be Sold", 'error')
@@ -155,6 +165,23 @@ QBCore.Functions.CreateCallback('moon-warehouse:server:isowner', function(source
                 cb(true)
             else
                 cb(false)
+            end
+        end
+    else
+        cb(false)
+    end
+end)
+
+QBCore.Functions.CreateCallback('moon-warehouse:server:ispwdset', function(source, cb, location)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    local result = MySQL.Sync.fetchAll('SELECT * FROM warehouses WHERE location = ?', {location})
+    if result then
+        for _, v in pairs(result) do
+            if v.passwordset == 0 then
+                cb(false)
+            elseif v.passwordset == 1 then
+                cb(true)
             end
         end
     else
@@ -217,7 +244,7 @@ function UpdateWarehouses()
     for location, data in pairs(Config.WareHouses['Warehouses']) do
         if not existingWarehouses[location] then
             local name = "Warehouse "..location
-            local sql = "INSERT INTO `warehouses` (`location`, `owned`, `owner`, `stashsize`, `slots`, `price`, `date_purchased`) VALUES (?, 0, '0', 3000000, 50, 10000, NULL)"
+            local sql = "INSERT INTO `warehouses` (`location`, `owned`, `owner`, `stashsize`, `slots`, `price`, `date_purchased`, `passwordset`, `password`) VALUES (?, 0, '0', 3000000, 50, 10000, NULL, 0, NULL )"
             local values = {location}
             MySQL.Async.execute(sql, values, function(rowsInserted)
                 if rowsInserted > 0 then
