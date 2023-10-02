@@ -186,6 +186,7 @@ RegisterNetEvent("moon-warehouse:client:openmenu", function(meow)
 end)
 
 RegisterNetEvent("moon-warehouse:client:openwithpassword", function(id)
+    local warehouseid = id
     QBCore.Functions.TriggerCallback('moon-warehouse:server:ispwdset', function(result)
         if result then
             isPwdSet = true
