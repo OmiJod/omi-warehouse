@@ -277,9 +277,7 @@ RegisterNetEvent("moon-warehouse:client:openwarehousestash", function(id)
 end)
 
 RegisterNetEvent('moon-warehouse:client:openstash', function(id)
-    exports["ox_inventory"]:openInventory("stash", {
-      id = id
-    })
+    exports.ox_inventory:openInventory('stash', id)
 end)
 
 RegisterNetEvent("moon-warehouse:client:checkwarehouse", function(id)
@@ -578,3 +576,5 @@ AddEventHandler('onResourceStop', function(resource)
         despawntargets() 
     end 
 end)
+
+
